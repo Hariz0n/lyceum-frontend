@@ -23,13 +23,26 @@ import {
 } from '@taiga-ui/kit';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TuiActiveZoneModule } from '@taiga-ui/cdk';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, SidebarComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    SidebarComponent,
+    LoginComponent,
+    RegistrationComponent,
+    MainPageComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     TuiRootModule,
     TuiDialogModule,
     TuiAlertModule,
@@ -44,6 +57,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     RouterLink,
     RouterLinkActive,
     TuiBadgedContentModule,
+    RouterOutlet,
+    ReactiveFormsModule,
   ],
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
   bootstrap: [AppComponent],
