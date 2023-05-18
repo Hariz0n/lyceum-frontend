@@ -1,53 +1,48 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { IUser } from 'src/app/interfaces/users';
+import { AuthService } from '../../services/auth.service';
+
+interface IForm {
+  email: FormControl<string | null>;
+  password: FormControl<string | null>;
+  type: FormControl<'student' | 'teacher' | null>;
+}
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   public loginForm!: FormGroup;
-  public users: IUser[] = this.localStorageService.get('users') ?? [];
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private localStorageService: LocalStorageService
-  ) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      login: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+    this.loginForm = new FormGroup<IForm>({
+      email: new FormControl<string>('', [
+        Validators.email,
+        Validators.required,
+      ]),
+      password: new FormControl<string>('', [
+        Validators.minLength(6),
+        Validators.required,
+      ]),
+      type: new FormControl<'student' | 'teacher'>('student', [
+        Validators.required,
+      ]),
     });
   }
 
-  get login() {
-    return this.loginForm.get('login');
-  }
-
-  get password() {
-    return this.loginForm.get('password');
-  }
-
-  async submitHandler() {
-    this.loginForm.markAllAsTouched();
-    if (this.loginForm.valid) {
-      const currentUser: IUser = this.loginForm.value;
-      if (
-        this.users.filter(
-          (user: IUser) => JSON.stringify(currentUser) === JSON.stringify(user)
-        ).length
-      ) {
-        this.localStorageService.save('user', currentUser);
-        this.router.navigate(['/home']);
-      } else {
-        this.loginForm.setErrors({ noSuchUser: true });
+  submitHandler() {
+    this.authService.login(this.loginForm.value).subscribe(
+      () => {
+        this.router.navigate(['/books']);
+      },
+      () => {
+        this.loginForm.setErrors(['']);
       }
-    }
+    );
   }
 }

@@ -12,9 +12,8 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private authService: AuthService) {}
-
+export class WelcomeGuard implements CanActivate {
+  constructor(private authService: AuthService, private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -23,10 +22,10 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const user = localStorage.getItem('access_token');
-    if (user === null || !this.authService.hasValidAccessToken()) {
-      this.router.navigate(['login']);
-      return false;
+    console.log(this.authService.hasValidAccessToken());
+    if (this.authService.hasValidAccessToken()) {
+      this.router.navigate(['/home']);
+      return true;
     }
     return true;
   }

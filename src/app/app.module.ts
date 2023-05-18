@@ -31,8 +31,10 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TuiSidebarModule } from '@taiga-ui/addon-mobile';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { TuiSidebarModule } from '@taiga-ui/addon-mobile';
     LoginComponent,
     RegistrationComponent,
     MainPageComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,14 @@ import { TuiSidebarModule } from '@taiga-ui/addon-mobile';
     TuiAccordionModule,
     TuiLinkModule,
   ],
-  providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
+  providers: [
+    { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
