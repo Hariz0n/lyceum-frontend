@@ -74,39 +74,26 @@
   </div>
   <p class="login__text">Логин</p>
   <input
-    [ngClass]="{
-      invalid_input:
-        (login!.hasError('required') && login!.touched) ||
-        (form!.hasError('noSuchUser') && form.submitted)
-    }"
     class="login__input"
     type="text"
     autocomplete="off"
-    formControlName="login" />
-  <div class="login__msg" *ngIf="login!.hasError('required') && login!.touched">
-    Введите логин
-  </div>
+    formControlName="email" />
   <p class="login__text">Пароль</p>
   <input
-    [ngClass]="{
-      invalid_input:
-        (password!.hasError('required') && password!.touched) ||
-        (form!.hasError('noSuchUser') && form.submitted)
-    }"
     class="login__input"
     type="password"
     autocomplete="off"
     formControlName="password" />
   <div
     class="login__msg"
-    *ngIf="password!.hasError('required') && password!.touched">
-    Введите пароль
-  </div>
-  <div
-    class="login__msg"
     *ngIf="form!.hasError('noSuchUser') && form.submitted">
     Введен неверный логин или пароль
   </div>
+  <p class="login__text">Тип</p>
+  <select class="login__input" formControlName="type">
+    <option ngValue="student" value="student">Ученик</option>
+    <option ngValue="teacher" value="teacher">Учитель</option>
+  </select>
 
   <button class="login__button" type="submit">Войти</button>
 
