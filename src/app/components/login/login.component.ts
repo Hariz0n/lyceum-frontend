@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -42,10 +37,10 @@ export class LoginComponent implements OnInit {
 
   submitHandler() {
     this.authService.login(this.loginForm.value).subscribe(
-      value => {
+      () => {
         this.router.navigate(['/books']);
       },
-      error => {
+      () => {
         this.loginForm.setErrors(['']);
       }
     );

@@ -23,6 +23,11 @@ export class LoggedInAuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return !this.authService.hasValidAccessToken();
+    if (this.authService.hasValidAccessToken()) {
+      this.router.navigate(['/home']);
+      return false;
+    }
+
+    return true;
   }
 }

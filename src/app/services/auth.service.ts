@@ -1,10 +1,9 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginDtoRequest } from '../dto/LoginDtoRequest';
 import { AuthDtoResponse } from '../dto/AuthDtoResponse';
 import { RegisterDtoRequest } from '../dto/RegisterDtoRequest';
 import { BehaviorSubject, tap } from 'rxjs';
-import { data } from 'autoprefixer';
 
 interface IPayload {
   email: string;
