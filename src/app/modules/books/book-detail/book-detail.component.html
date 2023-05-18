@@ -1,0 +1,6 @@
+<div class="container mx-auto m-12" *ngIf="isLoaded">
+  <h1 class="text-[32px] mb-6">{{ data.name }}</h1>
+  <p *ngFor="let pr of data.paragraphs.reverse()" class="text-2xl mb-4">
+    {{ pr.data }}
+  </p>
+</div>

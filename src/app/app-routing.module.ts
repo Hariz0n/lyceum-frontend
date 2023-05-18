@@ -19,7 +19,16 @@ const routes: Routes = [
     canActivate: [LoggedInAuthGuard],
   },
   { path: 'home', component: MainPageComponent, canActivate: [AuthGuard] },
-  { path: 'books', loadChildren: () => import('./books/books.module').then(m => m.BooksModule)}
+  {
+    path: 'books',
+    loadChildren: () =>
+      import('./modules/books/books.module').then(m => m.BooksModule),
+  },
+  {
+    path: 'class',
+    loadChildren: () =>
+      import('./modules/class/class.module').then(m => m.ClassModule),
+  },
 ];
 
 @NgModule({
