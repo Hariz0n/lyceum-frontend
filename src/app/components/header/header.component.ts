@@ -12,4 +12,11 @@ export class HeaderComponent {
   constructor() {
     this.full_name = 'Кирилл Кузнецов';
   }
+
+  open = false;
+
+  toggle(open: boolean) {
+    console.log(open);
+    this.open = open;
+  }
 }

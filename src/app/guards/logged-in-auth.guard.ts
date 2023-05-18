@@ -28,6 +28,7 @@ export class LoggedInAuthGuard implements CanActivate {
     | UrlTree {
     const user: boolean = this.localStorageService.get('user') || false;
     if (user) {
+      return true;
       this.router.navigate(['dashboard']);
       return false;
     }

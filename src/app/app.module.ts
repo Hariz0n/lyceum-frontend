@@ -9,6 +9,7 @@ import {
   TuiDropdownModule,
   TuiButtonModule,
   TuiHostedDropdownModule,
+  TuiLinkModule,
 } from '@taiga-ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -17,6 +18,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import {
+  TuiAccordionModule,
   TuiAvatarModule,
   TuiBadgedContentModule,
   TuiDataListDropdownManagerModule,
@@ -29,6 +31,8 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { TuiSidebarModule } from '@taiga-ui/addon-mobile';
 
 @NgModule({
   declarations: [
@@ -59,6 +63,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     TuiBadgedContentModule,
     RouterOutlet,
     ReactiveFormsModule,
+    HttpClientModule,
+    TuiSidebarModule,
+    TuiAccordionModule,
+    TuiLinkModule,
   ],
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
   bootstrap: [AppComponent],

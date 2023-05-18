@@ -1,11 +1,27 @@
-<header>
-  <div class="header_container">
-    <div class="header_user">
+<header class="bg-[#D4B7EE]">
+  <div class="container mx-auto flex align-middle justify-between">
+    <div class="flex items-center gap-2 text-white">
+      <button
+        tuiIconButton
+        type="button"
+        (click)="toggle(true)"
+        (tuiActiveZoneChange)="toggle($event)"
+        icon="tuiIconAlignLeftLarge">
+        <div
+          *tuiSidebar="open; direction: 'left'"
+          class="flex flex-col justify-center px-8">
+          <a routerLink="/" class="text-2xl my-4">Личный кабинет</a>
+          <a routerLink="/" class="text-2xl my-4">Мои уроки</a>
+          <a routerLink="/class" class="text-2xl my-4">Мой класс</a>
+          <a routerLink="/books" class="text-2xl my-4">Мои учебники</a>
+        </div>
+      </button>
+
       <tui-avatar
         text="{{ full_name }}"
         class="tui-space_top-1"
         [rounded]="true"></tui-avatar>
-      <div>{{ full_name }}</div>
+      <div class="text-2xl">{{ full_name }}</div>
       <div>
         <tui-hosted-dropdown
           tuiDropdownLimitWidth="auto"
@@ -19,13 +35,13 @@
             appearance="custom"></button>
         </tui-hosted-dropdown>
         <ng-template #dropdown>
-          <div class="content">
-            <a href="#">
-              <tui-svg src="tuiIconSettingsLarge" class="icon"></tui-svg>
+          <div class="bg-[#D4B7EE] flex flex-col items-center p-2 gap-2">
+            <a href="#" class="text-xl">
+              <tui-svg src="tuiIconSettingsLarge" class="text-white"></tui-svg>
               Настройки
             </a>
-            <a href="#">
-              <tui-svg src="tuiIconLogOutLarge" class="icon"></tui-svg>
+            <a href="#" class="text-xl">
+              <tui-svg src="tuiIconLogOutLarge" class="text-white"></tui-svg>
               Выйти
             </a>
           </div>
@@ -37,7 +53,7 @@
         size="xs"
         class="tui-space_right-5"
         [rounded]="true">
-        <tui-svg src="tuiIconBellLarge" class="icon"></tui-svg>
+        <tui-svg src="tuiIconBellLarge" class="text-white"></tui-svg>
       </tui-badged-content>
     </div>
     <img src="assets/logo.svg" alt="Logo" style="margin: 8px 0" />
