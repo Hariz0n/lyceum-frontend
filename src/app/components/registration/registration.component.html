@@ -4,57 +4,163 @@
   #form="ngForm"
   (ngSubmit)="submitHandler()">
   <h2 class="registration__title">Регистрация</h2>
-  <p class="registration__text">Логин</p>
-  <input
-    [ngClass]="{
-      invalid_input: checkLogin()
-    }"
-    class="registration__input"
-    type="text"
-    autocomplete="off"
-    formControlName="login" />
-  <div
-    class="registration__msg"
-    *ngIf="login!.hasError('required') && login!.touched">
-    Введите логин
-  </div>
-  <div class="registration__msg" *ngIf="login!.hasError('minlength')">
-    Логин не может быть короче 3 символов
-  </div>
-  <div
-    class="registration__msg"
-    *ngIf="login!.hasError('noSpaceAllowed') && login!.touched">
-    Логин не должен содержать пробелы
-  </div>
+  <div style="display: flex">
+    <div>
+      <p class="registration__text">Фамилия</p>
+      <input
+        [ngClass]="{
+          invalid_input: checkLastName()
+        }"
+        class="registration__input"
+        type="text"
+        autocomplete="off"
+        formControlName="lastName" />
+      <div
+        class="registration__msg"
+        *ngIf="lastName!.hasError('required') && lastName!.touched">
+        Введите фамилию
+      </div>
+      <div class="registration__msg" *ngIf="lastName!.hasError('minlength')">
+        Фамилия не может быть короче 3 символов
+      </div>
+      <div
+        class="registration__msg"
+        *ngIf="lastName!.hasError('noSpaceAllowed') && lastName!.touched">
+        Фамилия не должна содержать пробелы
+      </div>
 
-  <div
-    class="registration__msg"
-    *ngIf="registrationForm!.hasError('notUniqueUser') && form.submitted">
-    Пользователь с таким логином уже существует
+      <p class="registration__text">Имя</p>
+      <input
+        [ngClass]="{
+          invalid_input: checkFirstName()
+        }"
+        class="registration__input"
+        type="text"
+        autocomplete="off"
+        formControlName="firstName" />
+      <div
+        class="registration__msg"
+        *ngIf="firstName!.hasError('required') && firstName!.touched">
+        Введите имя
+      </div>
+      <div class="registration__msg" *ngIf="firstName!.hasError('minlength')">
+        Имя не может быть короче 2 символов
+      </div>
+      <div
+        class="registration__msg"
+        *ngIf="firstName!.hasError('noSpaceAllowed') && firstName!.touched">
+        Имя не должно содержать пробелы
+      </div>
+      <p class="registration__text">Отчество</p>
+      <input
+        [ngClass]="{
+          invalid_input: checkMiddleName()
+        }"
+        class="registration__input"
+        type="text"
+        autocomplete="off"
+        formControlName="middleName" />
+      <div
+        class="registration__msg"
+        *ngIf="middleName!.hasError('required') && middleName!.touched">
+        Введите отчество
+      </div>
+      <div class="registration__msg" *ngIf="middleName!.hasError('minlength')">
+        Отчество не может быть короче 3 символов
+      </div>
+      <div
+        class="registration__msg"
+        *ngIf="middleName!.hasError('noSpaceAllowed') && middleName!.touched">
+        Отчество не должно содержать пробелы
+      </div>
+    </div>
+    <div>
+      <p class="registration__text">E-mail</p>
+      <input
+        [ngClass]="{
+          invalid_input: checkEmail()
+        }"
+        class="registration__input"
+        type="text"
+        autocomplete="off"
+        formControlName="email" />
+      <div
+        class="registration__msg"
+        *ngIf="email!.hasError('required') && email!.touched">
+        Введите E-mail
+      </div>
+      <div class="registration__msg" *ngIf="email!.hasError('minlength')">
+        E-mail не может быть короче 3 символов
+      </div>
+      <div
+        class="registration__msg"
+        *ngIf="email!.hasError('noSpaceAllowed') && email!.touched">
+        E-mail не должен содержать пробелы
+      </div>
+      <div
+        class="registration__msg"
+        *ngIf="email!.hasError('email') && email!.touched">
+        Некорректный E-mail
+      </div>
+      <div
+        class="registration__msg"
+        *ngIf="registrationForm!.hasError('notUniqueUser') && form.submitted">
+        Пользователь с таким E-mail уже существует
+      </div>
+      <p class="registration__text">Пароль</p>
+      <input
+        [ngClass]="{
+          invalid_input: checkPass()
+        }"
+        class="registration__input"
+        type="password"
+        autocomplete="off"
+        formControlName="password" />
+      <div
+        class="registration__msg"
+        *ngIf="password!.hasError('required') && password!.touched">
+        Введите пароль
+      </div>
+      <div class="registration__msg" *ngIf="password!.hasError('minlength')">
+        Пароль не может быть короче 8 символов
+      </div>
+      <div
+        class="registration__msg"
+        *ngIf="password!.hasError('noSpaceAllowed') && password!.touched">
+        Пароль не должен содержать пробелы
+      </div>
+      <div
+        class="registration__msg"
+        *ngIf="password!.hasError('pattern') && password!.touched">
+        Слабый пароль <br />(Требования: Строчные буквы, Заглавные буквы, Числа,
+        <br />Специальные символы)
+      </div>
+      <p class="registration__text">Повторите пароль</p>
+      <input
+        [ngClass]="{
+          invalid_input: checkConfirmPassword()
+        }"
+        class="registration__input"
+        type="password"
+        autocomplete="off"
+        formControlName="confirmPassword" />
+      <div
+        class="registration__msg"
+        *ngIf="
+          confirmPassword!.hasError('required') && confirmPassword!.touched
+        ">
+        Повторите пароль
+      </div>
+      <div
+        class="registration__msg"
+        *ngIf="
+          confirmPassword!.hasError('differentPasswords') &&
+          confirmPassword!.touched
+        ">
+        Пароли не совпадают
+      </div>
+    </div>
   </div>
-  <p class="registration__text">Пароль</p>
-  <input
-    [ngClass]="{
-      invalid_input: checkPass()
-    }"
-    class="registration__input"
-    type="password"
-    autocomplete="off"
-    formControlName="password" />
-  <div
-    class="registration__msg"
-    *ngIf="password!.hasError('required') && password!.touched">
-    Введите пароль
-  </div>
-  <div class="registration__msg" *ngIf="password!.hasError('minlength')">
-    Пароль не может быть короче 5 символов
-  </div>
-  <div
-    class="registration__msg"
-    *ngIf="password!.hasError('noSpaceAllowed') && password!.touched">
-    Пароль не должен содержать пробелы
-  </div>
-
   <button class="registration__button" type="submit">Зарегистрироваться</button>
 
   <p class="registration__bottom-text">Уже есть аккаунт?</p>

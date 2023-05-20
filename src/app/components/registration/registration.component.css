@@ -4,7 +4,7 @@
   align-items: stretch;
   margin: 5% auto 0;
   padding: 0 0;
-  width: 480px;
+  width: 960px;
   background-color: white;
   box-shadow: 0 5px 10px rgba(114, 85, 197, 0.1);
   border-radius: 20px;
@@ -38,7 +38,7 @@
   margin-bottom: 25px;
   padding: 12px;
   width: 416px;
-  margin-left: auto;
+  margin-left: 2em;
   margin-right: auto;
 }
 .registration__msg{
