@@ -37,6 +37,7 @@ export class AuthService {
       .pipe(
         tap(token => {
           localStorage.setItem('access_token', token.access_token);
+
           this._payload.next(
             JSON.parse(atob(token.access_token.split('.')[1]))
           );
