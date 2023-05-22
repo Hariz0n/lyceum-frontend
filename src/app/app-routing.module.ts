@@ -38,10 +38,23 @@ const routes: Routes = [
       import('./modules/class/class.module').then(m => m.ClassModule),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'lessons',
+    loadChildren: () =>
+      import('./modules/lessons/lessons.module').then(m => m.LessonsModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'help-requests',
+    loadChildren: () =>
+      import('./modules/help-requests/help-requests.module').then(
+        m => m.HelpRequestsModule
+      ),
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
+  imports: [RouterModule.forRoot(routes, { enableTracing: false })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
