@@ -11,10 +11,7 @@ import { CreateLessonDtoRequest } from '../dto/createLessonDtoRequest';
   providedIn: 'root',
 })
 export class LessonsService {
-  constructor(
-    private httpClient: HttpClient,
-    private authService: AuthService
-  ) {}
+  constructor(private httpClient: HttpClient) {}
 
   getAllLessons(query?: { subjectId?: number }) {
     return this.httpClient.get<LessonDtoResponse[]>(
