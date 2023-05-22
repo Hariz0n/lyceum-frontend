@@ -25,7 +25,7 @@ import {
 } from '@taiga-ui/kit';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TuiActiveZoneModule } from '@taiga-ui/cdk';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
@@ -35,6 +35,10 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TuiSidebarModule } from '@taiga-ui/addon-mobile';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
+
+registerLocaleData(localeRu, 'ru');
 
 @NgModule({
   declarations: [
@@ -64,7 +68,6 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
     RouterLink,
     RouterLinkActive,
     TuiBadgedContentModule,
-    RouterOutlet,
     ReactiveFormsModule,
     HttpClientModule,
     TuiSidebarModule,

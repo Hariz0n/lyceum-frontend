@@ -1,0 +1,29 @@
+<div
+  class="container mx-auto my-8 bg-white rounded-xl shadow-lg p-6"
+  *ngIf="!isLoading">
+  <h2 class="text-4xl text-[#7255C5] mb-4">Заявка на помощь</h2>
+  <form [formGroup]="form" (submit)="onSubmit()" class="flex flex-col gap-4">
+    <label for="lesson" class="text-2xl text-[#7255C5]">Урок</label>
+    <select
+      id="lesson"
+      formControlName="lesson"
+      class="text-lg p-4 rounded-xl border">
+      <option *ngFor="let lesson of lessons" [value]="lesson.id">
+        {{ lesson.name }}
+      </option>
+    </select>
+    <label for="description" class="text-2xl text-[#7255C5]"
+      >Что не понятно?</label
+    >
+    <textarea
+      id="description"
+      formControlName="description"
+      class="text-lg p-4 rounded-xl border min-h-[30vh]"></textarea>
+    <button
+      [disabled]="!form.valid"
+      type="submit"
+      class="p-2 bg-green-500 rounded-xl text-lg font-semibold text-white border-2 border-green-500 disabled:bg-green-300">
+      Отправить
+    </button>
+  </form>
+</div>

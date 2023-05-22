@@ -2,33 +2,29 @@ export interface IClass {
   id: number;
   name: string;
   grade: number;
-  students: [
-    {
+  students: {
+    id: number;
+    firstName: string;
+    lastName: string;
+    middleName: string;
+    email: string;
+    photoPath: string;
+  }[];
+  classSubjectTeacher: {
+    id: number;
+    teacher: {
       id: number;
       firstName: string;
       lastName: string;
       middleName: string;
       email: string;
       photoPath: string;
-    }
-  ];
-  classSubjectTeacher: [
-    {
+    };
+    subject: {
       id: number;
-      teacher: {
-        id: number;
-        firstName: string;
-        lastName: string;
-        middleName: string;
-        email: string;
-        photoPath: string;
-      };
-      subject: {
-        id: number;
-        name: 'Математика';
-      };
-    }
-  ];
+      name: 'Математика';
+    };
+  }[];
   classLesson: [
     {
       id: number;

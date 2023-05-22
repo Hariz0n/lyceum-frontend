@@ -66,10 +66,5 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 23px;
-
   color: #999999;
-}
-.invalid_input{
-  background: #FFDDDD;
-  border: 1px solid #FF0000;
 }

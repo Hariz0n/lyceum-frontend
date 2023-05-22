@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TUI_ARROW } from '@taiga-ui/kit';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,11 +8,8 @@ import { TUI_ARROW } from '@taiga-ui/kit';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  full_name: string;
   readonly arrow = TUI_ARROW;
-  constructor() {
-    this.full_name = 'Кирилл Кузнецов';
-  }
+  constructor(protected authService: AuthService) {}
 
   open = false;
 
