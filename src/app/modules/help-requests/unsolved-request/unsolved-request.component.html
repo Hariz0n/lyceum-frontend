@@ -1,0 +1,52 @@
+<div class="shadow rounded-xl p-6 bg-white" *ngIf="!isLoading">
+  <h2 class="text-3xl text-[#7255C5] mb-8">
+    {{ reqData.lesson.subject.name }} {{ reqData.applicant.class.grade }} класс
+    - {{ reqData.lesson.name }}
+  </h2>
+  <h3 class="text-2xl text-[#7255C5] mb-4">Урок</h3>
+  <tui-accordion class="mb-8">
+    <tui-accordion-item>
+      <h3>{{ reqData.lesson.name }}</h3>
+      <ng-template tuiAccordionItemContent>
+        <p class="whitespace-pre-wrap">{{ reqData.lesson.information }}</p>
+      </ng-template>
+    </tui-accordion-item>
+  </tui-accordion>
+  <h3 class="text-2xl text-[#7255C5] mb-4">Вопрос</h3>
+  <p class="text-xl mb-8">{{ reqData.description }}</p>
+  <button
+    *ngIf="
+      !isEditing && (authService.payload$ | async)?.sub !== reqData.applicant.id
+    "
+    (click)="this.isEditing = true"
+    class="mb-4 last:mb-0 bg-green-500 text-lg py-2 px-4 rounded text-white">
+    Помочь
+  </button>
+  <hr *ngIf="isEditing" />
+  <form
+    (submit)="onSubmit()"
+    *ngIf="isEditing"
+    [formGroup]="form"
+    class="flex flex-col">
+    <label for="message" class="text-2xl text-[#7255C5] my-4">Сообщение</label>
+    <textarea
+      name="message"
+      formControlName="message"
+      id="message"
+      class="p-4 rounded border text-lg mb-4"></textarea>
+    <div class="flex gap-4">
+      <button
+        type="submit"
+        class="last:mb-0 bg-green-500 text-lg py-2 px-4 rounded text-white w-1/4 self-center">
+        Подтвердить
+      </button>
+      <button
+        type="button"
+        *ngIf="isEditing"
+        (click)="this.isEditing = false"
+        class="bg-green-500 text-lg py-2 px-4 rounded text-white w-1/4 self-center">
+        Закрыть
+      </button>
+    </div>
+  </form>
+</div>

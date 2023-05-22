@@ -1,0 +1,46 @@
+<div
+  class="container mx-auto p-6 my-8 bg-white rounded-xl shadow-lg"
+  *ngIf="!isLoading">
+  <h2 class="text-3xl text-[#7255C5] mb-4">
+    {{ reqData.lesson.subject.name }} {{ reqData.applicant.class.grade }} класс
+    - {{ reqData.lesson.name }}
+  </h2>
+  <hr class="my-6" />
+  <h3 class="text-2xl text-[#7255C5] mb-4">Урок</h3>
+  <tui-accordion>
+    <tui-accordion-item>
+      <h3>{{ reqData.lesson.name }}</h3>
+      <ng-template tuiAccordionItemContent>
+        <p class="whitespace-pre-wrap">{{ reqData.lesson.information }}</p>
+      </ng-template>
+    </tui-accordion-item>
+  </tui-accordion>
+  <hr class="my-6" />
+  <h3 class="text-2xl text-[#7255C5] mb-4">Вопрос</h3>
+  <p class="text-xl">{{ reqData.description }}</p>
+  <hr class="my-6" />
+  <h3 class="text-2xl text-[#7255C5] mb-4">Ответ</h3>
+  <p class="text-xl">{{ reqData.message }}</p>
+  <hr class="my-6" />
+  <div class="flex justify-between">
+    <div class="">
+      <p class="text-lg">
+        Создал: {{ reqData.applicant.lastName }}
+        {{ reqData.applicant.firstName }}
+      </p>
+      <p class="text-lg">
+        Помог: {{ reqData.mentor.lastName }}
+        {{ reqData.mentor.firstName }}
+      </p>
+    </div>
+    <div class="flex flex-col items-end">
+      <time class="text-lg" [dateTime]="reqData.startDate"
+        >Создано: {{ reqData.startDate | date : 'medium' : '' : 'ru' }}</time
+      >
+      <time class="text-lg" [dateTime]="reqData.startDate"
+        >Получен ответ:
+        {{ reqData.endDate | date : 'medium' : '' : 'ru' }}</time
+      >
+    </div>
+  </div>
+</div>

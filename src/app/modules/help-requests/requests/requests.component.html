@@ -1,0 +1,18 @@
+<div class="container mx-auto my-8">
+  <h2 class="text-4xl text-[#7255C5] mb-4">Заявки на помощь</h2>
+  <div class="flex gap-8 mb-8">
+    <button
+      class="text-2xl text-[#7255C5]"
+      [routerLink]="['/help-requests', 'unsolved']"
+      routerLinkActive="underline">
+      Не решенные
+    </button>
+    <button
+      class="text-2xl text-[#7255C5]"
+      [routerLink]="['/help-requests', 'solved']"
+      routerLinkActive="underline">
+      Решенные
+    </button>
+  </div>
+  <router-outlet></router-outlet>
+</div>
