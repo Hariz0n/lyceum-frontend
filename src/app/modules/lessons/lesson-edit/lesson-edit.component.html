@@ -1,0 +1,51 @@
+<div class="container mx-auto my-8" *ngIf="!isLoading">
+  <form
+    (submit)="onSubmit()"
+    [formGroup]="form"
+    class="border-2 rounded-xl p-6 flex flex-col bg-white">
+    <label for="name" class="text-2xl text-[#7255C5] mb-3">Название</label>
+    <input
+      id="name"
+      formControlName="name"
+      class="p-4 rounded-xl text-xl mb-4 border-gray-400 border" />
+    <label for="description" class="text-2xl text-[#7255C5] mb-3"
+      >Информация</label
+    >
+    <textarea
+      id="description"
+      formControlName="information"
+      class="p-4 rounded-xl text-xl mb-4 h-auto h-[33vh] border-gray-400 border"></textarea>
+    <div class="flex justify-between items-end">
+      <div class="flex flex-col">
+        <label for="difficulty" class="text-2xl text-[#7255C5] mb-3"
+          >Сложность</label
+        >
+        <input
+          id="difficulty"
+          type="number"
+          max="10"
+          min="0"
+          formControlName="difficultyScore"
+          class="p-4 rounded-xl text-xl self-start border-gray-400 border" />
+      </div>
+      <div class="flex flex-col">
+        <label for="subject" class="text-2xl text-[#7255C5] mb-3"
+          >Предмет</label
+        >
+        <select
+          id="subject"
+          formControlName="subjectId"
+          class="p-4 rounded-xl text-xl self-start border-gray-400 border">
+          <option *ngFor="let subj of subjects" [value]="subj.id">
+            {{ subj.name }}
+          </option>
+        </select>
+      </div>
+      <button
+        type="submit"
+        class="text-lg py-2 px-4 border-2 border-green-600 bg-green-500 rounded-xl text-white">
+        Coхранить
+      </button>
+    </div>
+  </form>
+</div>
