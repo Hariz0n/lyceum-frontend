@@ -1,4 +1,9 @@
 <div class="flex flex-col gap-8" *ngIf="!isLoading">
+  <a
+    [routerLink]="['/help-requests', 'new']"
+    class="bg-white p-4 rounded-xl text-xl font-bold text-center cursor-pointer border-2 border-[#7255C5] text-[#7255C5] hover:bg-[#7255C5] hover:text-white transition-colors"
+    >Создать новый</a
+  >
   <div
     [routerLink]="['/help-requests', 'unsolved', req.id]"
     class="rounded-xl bg-white shadow-md p-6 hover:scale-105 cursor-pointer transition-transform"
