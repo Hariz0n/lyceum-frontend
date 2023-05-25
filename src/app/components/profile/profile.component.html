@@ -1,0 +1,79 @@
+<div class="wrapper">
+  <div class="block">
+    <div class="block__about">
+      <h1 class="profile__title">Обо мне</h1>
+      <div class="profile__card">
+        <img src="assets/pic.png" />
+        <ul *ngIf="user$ | async as user">
+          <li>
+            <p class="profile__text">Фамилия:</p>
+            {{ user.lastName }}
+          </li>
+          <li>
+            <p class="profile__text">Имя:</p>
+            {{ user.firstName }}
+          </li>
+          <li *ngIf="user.middleName">
+            <p class="profile__text">Отчество:</p>
+            {{ user.middleName }}
+          </li>
+          <li *ngIf="type === 'student' && grade">
+            <p class="profile__text">Класс:</p>
+            {{ grade }}
+          </li>
+          <li *ngIf="type === 'student'">
+            <p class="profile__text">Средний балл:</p>
+            <!-- вот тут -->
+            4.6
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div *ngIf="type === 'student'">
+      <h1 class="profile__title">Приближается срок</h1>
+      <div class="profile__card__small">
+        <h2 class="profile__card__title">
+          Тест по теме ”Строение стволовых ...
+        </h2>
+        <p class="profile__card_description">Биология</p>
+        <div class="profile__card__info">
+          <button class="profile__card_btn">начать тестирование</button>
+          <p>120 мин</p>
+          <p>23.03</p>
+          <p>00:00</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="block__lessons">
+      <h1 class="profile__title">Мои предметы</h1>
+      <div class="block__lessons__wrapper">
+        <ng-container *ngIf="type === 'teacher'">
+          <div class="block__lessons__card" *ngFor="let subject of subjects">
+            <div class="block__lessons__card__header">{{ subject.name }}</div>
+            <img
+              src="https://placehold.co/1920x1080"
+              class="block__lessons__card__pic" />
+            <div class="block__lessons__card__desc">
+              Класс: {{ subject.grade }}
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="type === 'student'">
+          <div class="block__lessons__card" *ngFor="let subject of subjects">
+            <div class="block__lessons__card__header">
+              <abbr title="{{ subject.name }}">{{ subject.name }}</abbr>
+            </div>
+            <img
+              src="https://placehold.co/1920x1080"
+              class="block__lessons__card__pic" />
+            <div class="block__lessons__card__desc">
+              {{ subject.grade }}
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
