@@ -18,6 +18,7 @@ interface IForm {
 })
 export class RegistrationComponent {
   registrationForm!: FormGroup;
+  items = ['student', 'teacher'];
   constructor(private router: Router, private authService: AuthService) {
     this.registrationForm = new FormGroup<IForm>(
       {
@@ -51,7 +52,9 @@ export class RegistrationComponent {
           ),
         ]),
         confirmPassword: new FormControl<string>('', [Validators.required]),
-        type: new FormControl<'student' | 'teacher'>('student'),
+        type: new FormControl<'student' | 'teacher'>('student', [
+          Validators.required,
+        ]),
       },
       {
         validators: control => {
