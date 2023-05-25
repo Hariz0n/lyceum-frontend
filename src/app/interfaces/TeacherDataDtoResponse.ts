@@ -1,3 +1,15 @@
+export interface IClassSubjectTeacher {
+  id: number;
+  cls: {
+    id: number;
+    name: string;
+    grade: number;
+  };
+  subject: {
+    id: number;
+    name: string;
+  };
+}
 export class TeacherDataDtoResponse {
   id!: number;
   firstName!: string;
@@ -5,16 +17,5 @@ export class TeacherDataDtoResponse {
   middleName!: string;
   email!: string;
   photoPath!: string;
-  classSubjectTeacher!: {
-    id: number;
-    cls: {
-      id: number;
-      name: string;
-      grade: number;
-    };
-    subject: {
-      id: number;
-      name: string;
-    };
-  }[];
+  classSubjectTeacher!: IClassSubjectTeacher[];
 }
