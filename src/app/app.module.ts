@@ -10,6 +10,7 @@ import {
   TuiButtonModule,
   TuiHostedDropdownModule,
   TuiLinkModule,
+  TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -22,6 +23,8 @@ import {
   TuiAvatarModule,
   TuiBadgedContentModule,
   TuiDataListDropdownManagerModule,
+  TuiDataListWrapperModule,
+  TuiSelectModule,
 } from '@taiga-ui/kit';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TuiActiveZoneModule } from '@taiga-ui/cdk';
@@ -37,6 +40,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
+import { ProfileComponent } from './components/profile/profile.component';
 
 registerLocaleData(localeRu, 'ru');
 
@@ -49,6 +53,7 @@ registerLocaleData(localeRu, 'ru');
     RegistrationComponent,
     MainPageComponent,
     WelcomeComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +78,9 @@ registerLocaleData(localeRu, 'ru');
     TuiSidebarModule,
     TuiAccordionModule,
     TuiLinkModule,
+    TuiSelectModule,
+    TuiDataListWrapperModule,
+    TuiTextfieldControllerModule,
   ],
   providers: [
     { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer },
