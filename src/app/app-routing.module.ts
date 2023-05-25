@@ -7,6 +7,7 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 import { AuthGuard } from './guards/auth.guard';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { WelcomeGuard } from './guards/welcome.guard';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,7 @@ const routes: Routes = [
     component: LoginComponent,
     canActivate: [LoggedInAuthGuard],
   },
-  { path: 'home', component: MainPageComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: ProfileComponent, canActivate: [AuthGuard] },
   {
     path: 'books',
     loadChildren: () =>
