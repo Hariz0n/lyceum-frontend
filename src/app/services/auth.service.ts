@@ -11,6 +11,7 @@ interface IPayload {
   type: 'student' | 'teacher';
   iat: number;
   exp: number;
+  id?: number;
 }
 
 @Injectable({

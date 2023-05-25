@@ -8,7 +8,7 @@ import { StudentDtoResponse } from '../dto/StudentDtoResponse';
 export class StudentService {
   constructor(private httpClient: HttpClient) {}
 
-  getStudent(id: number) {
+  getStudent(id: number | undefined) {
     return this.httpClient.get<StudentDtoResponse>(
       `http://localhost:3000/api/student/${id}`
     );
