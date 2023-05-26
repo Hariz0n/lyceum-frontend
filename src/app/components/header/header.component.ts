@@ -17,4 +17,8 @@ export class HeaderComponent {
     console.log(open);
     this.open = open;
   }
+  logOut() {
+    this.authService.logOut();
+  }
+  protected readonly AuthService = AuthService;
 }

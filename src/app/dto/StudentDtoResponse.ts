@@ -1,3 +1,18 @@
+export interface IClassLesson {
+  id: number;
+  classId: number;
+  lessonId: number;
+  lesson: {
+    id: number;
+    name: string;
+    information: string;
+    difficultyScore: number;
+    subject: {
+      id: number;
+      name: string;
+    };
+  };
+}
 export class StudentDtoResponse {
   id!: number;
   firstName!: string;
@@ -9,20 +24,6 @@ export class StudentDtoResponse {
     id: number;
     name: string;
     grade: number;
-    classLesson: {
-      id: number;
-      classId: number;
-      lessonId: number;
-      lesson: {
-        id: number;
-        name: string;
-        information: string;
-        difficultyScore: number;
-        subject: {
-          id: number;
-          name: string;
-        };
-      };
-    }[];
+    classLesson: IClassLesson[];
   };
 }

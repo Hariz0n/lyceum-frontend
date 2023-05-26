@@ -161,6 +161,13 @@
       </div>
     </div>
   </div>
+  <div class="registration__selector">
+    <p class="registration__text">Тип</p>
+    <select class="registration__input" formControlName="type">
+      <option ngValue="student" value="student">Ученик</option>
+      <option ngValue="teacher" value="teacher">Учитель</option>
+    </select>
+  </div>
   <button class="registration__button" type="submit">Зарегистрироваться</button>
 
   <p class="registration__bottom-text">Уже есть аккаунт?</p>
