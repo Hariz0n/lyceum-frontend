@@ -29,7 +29,7 @@
         </ul>
       </div>
     </div>
-    <div *ngIf="type === 'student'">
+    <div *ngIf="type === 'student' && false">
       <h1 class="profile__title">Приближается срок</h1>
       <div class="profile__card__small">
         <h2 class="profile__card__title">
@@ -50,7 +50,7 @@
       <h1 class="profile__title">Мои предметы</h1>
       <div class="block__lessons__wrapper">
         <ng-container *ngIf="type === 'teacher'">
-          <div class="block__lessons__card" *ngFor="let subject of subjects">
+          <div class="block__lessons__card" *ngFor="let subject of subjectsT">
             <div class="block__lessons__card__header">{{ subject.name }}</div>
             <img
               src="https://placehold.co/1920x1080"
@@ -61,15 +61,20 @@
           </div>
         </ng-container>
         <ng-container *ngIf="type === 'student'">
-          <div class="block__lessons__card" *ngFor="let subject of subjects">
+          <div
+            class="block__lessons__card"
+            *ngFor="let subject of subjectsS"
+            routerLink="/lessons/">
             <div class="block__lessons__card__header">
+              <!--              <a routerLink="/lessons/">-->
               <abbr title="{{ subject.name }}">{{ subject.name }}</abbr>
+              <!--              </a>-->
             </div>
             <img
               src="https://placehold.co/1920x1080"
               class="block__lessons__card__pic" />
             <div class="block__lessons__card__desc">
-              {{ subject.grade }}
+              Всего тем: {{ subject.grade }}
             </div>
           </div>
         </ng-container>

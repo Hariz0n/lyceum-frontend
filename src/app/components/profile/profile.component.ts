@@ -35,37 +35,40 @@ export class ProfileComponent {
     new Observable<TeacherDataDtoResponse | StudentDtoResponse>();
   public type!: 'student' | 'teacher';
   public grade = '';
-  public subjects: { name: string; grade: string }[] = [];
+  public subjectsS: { name: string; grade: number }[] = [];
+  public subjectsT: { name: string; grade: string }[] = [];
   ngOnInit() {
     this.user$.subscribe(value => {
       if (
         !(value instanceof TeacherDataDtoResponse) &&
-        this.type === 'student'
+        this.type === 'student' &&
+        value !== undefined
       ) {
-        // this.grade = value.class.name;
-        // value.class.classLesson.forEach(lesson => {
-        //   this.subjects.push({
-        //     name: lesson.lesson.name,
-        //     grade: lesson.lesson.information,
-        //   });
-        // });
-        this.grade = mockStudent.class?.name ?? '';
-        mockStudent.class?.classLesson.forEach(e => {
-          this.subjects.push({
-            name: e.lesson.name,
-            grade: e.lesson.information,
-          });
+        console.log(value);
+        this.grade = value.class?.name ?? '';
+        const visited: number[] = [];
+        value.class!.classLesson.forEach(lesson => {
+          if (visited.indexOf(lesson.lesson.subject.id) !== -1) {
+            this.subjectsS[
+              visited.indexOf(lesson.lesson.subject.id)
+            ].grade += 1;
+          } else {
+            this.subjectsS.push({
+              name: lesson.lesson.subject.name,
+              grade: 1,
+            });
+            visited.push(lesson.lesson.subject.id);
+          }
         });
-        // return;
       }
       if (!(value instanceof StudentDtoResponse) && this.type === 'teacher') {
-        // value.classSubjectTeacher.forEach(subject =>
-        //   this.subjects?.push(subject.subject.name)
-        mockTeacher.classSubjectTeacher.forEach(a =>
-          this.subjects.push({ name: a.subject.name, grade: a.cls.name })
+        value.classSubjectTeacher.forEach(subject =>
+          this.subjectsT?.push({
+            name: subject.subject.name,
+            grade: subject.cls.name,
+          })
         );
       }
     });
-    console.log(this.subjects);
   }
 }

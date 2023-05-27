@@ -20,12 +20,16 @@
 }
 .block__lessons__card{
   box-shadow: 0px 5px 10px 0px #7255C51A;
+  cursor: pointer;
 
   /*border: #FF0000 solid 1.5px;*/
 display: flex;
   flex-direction: column;
   width: min-content;
   border-radius: 20px;
+}
+.block__lessons__card:hover{
+  opacity: 70%;
 }
 .block__lessons__card div{
   padding: 20px 1em;
@@ -34,9 +38,11 @@ display: flex;
   height: 3.5em;
 }
 .block__lessons__wrapper{
-  display: flex;
+  display: grid;
   gap: 3em;
   flex-wrap: wrap;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
 }
 abbr{
   text-decoration: none;
