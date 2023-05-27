@@ -12,6 +12,7 @@ import {
   toArray,
 } from 'rxjs';
 import { SubjectsClassesData } from '../interfaces/subjects-classes-data';
+import { LessonsService } from '../../../services/lessons.service';
 
 @Component({
   selector: 'app-teacher-classes',
@@ -23,6 +24,7 @@ export class TeacherClassesComponent implements OnInit {
   subjectAndClassesData!: SubjectsClassesData[];
   constructor(
     private teacherService: TeacherService,
+    private lessonService: LessonsService,
     private authService: AuthService
   ) {}
   ngOnInit() {
@@ -70,5 +72,11 @@ export class TeacherClassesComponent implements OnInit {
         this.subjectAndClassesData = e;
         this.isLoading = false;
       });
+  }
+
+  unAttachClass(classId: number, lessonId: number) {
+    this.lessonService
+      .unAttachLessonFromClass(lessonId, classId)
+      .subscribe(() => this.ngOnInit());
   }
 }

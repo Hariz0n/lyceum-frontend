@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TUI_ARROW } from '@taiga-ui/kit';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HeaderComponent {
   readonly arrow = TUI_ARROW;
-  constructor(protected authService: AuthService) {}
+  constructor(protected authService: AuthService, private router: Router) {}
 
   open = false;
 
@@ -19,6 +20,7 @@ export class HeaderComponent {
   }
   logOut() {
     this.authService.logOut();
+    this.router.navigate(['/']);
   }
   protected readonly AuthService = AuthService;
 }

@@ -15,7 +15,7 @@ export class LessonsService {
 
   getAllLessons(query?: { subjectId?: number }) {
     return this.httpClient.get<LessonDtoResponse[]>(
-      'http://localhost:3000/api/lessons',
+      'http://81.200.151.177:3000/api/lessons',
       {
         params: query,
       }
@@ -24,13 +24,13 @@ export class LessonsService {
 
   getLesson(id: number) {
     return this.httpClient.get<LessonDtoResponse>(
-      `http://localhost:3000/api/lessons/${id}`
+      `http://81.200.151.177:3000/api/lessons/${id}`
     );
   }
 
   getClassLessons(classId: number, subjectId?: number) {
     return this.httpClient.get<LessonDtoResponse>(
-      `http://localhost:3000/api/lessons/class/${classId}`,
+      `http://81.200.151.177:3000/api/lessons/class/${classId}`,
       {
         params: subjectId ? { subjectId } : undefined,
       }
@@ -39,21 +39,21 @@ export class LessonsService {
 
   editLesson(id: number, lesson: LessonEditDtoRequest) {
     return this.httpClient.patch<EditDtoResponse>(
-      `http://localhost:3000/api/lessons/${id}`,
+      `http://81.200.151.177:3000/api/lessons/${id}`,
       lesson
     );
   }
 
   addLesson(createLessonDtoRequest: CreateLessonDtoRequest) {
     return this.httpClient.post<LessonDtoResponse>(
-      `http://localhost:3000/api/lessons/`,
+      `http://81.200.151.177:3000/api/lessons/`,
       createLessonDtoRequest
     );
   }
 
   getSubjects() {
     return this.httpClient.get<SubjectDtoResponse[]>(
-      `http://localhost:3000/api/subjects`
+      `http://81.200.151.177:3000/api/subjects`
     );
   }
 
@@ -63,8 +63,20 @@ export class LessonsService {
       lessonId: number;
       id: number;
     }>(
-      `http://localhost:3000/api/lessons/${lessonId}/attachClass?classId=${classId}`,
+      `http://81.200.151.177:3000/api/lessons/${lessonId}/attachClass?classId=${classId}`,
       {}
+    );
+  }
+
+  unAttachLessonFromClass(lessonId: number, classId: number) {
+    return this.httpClient.delete<EditDtoResponse>(
+      'http://81.200.151.177:3000/api/lessons/unattach-class',
+      {
+        body: {
+          lessonId,
+          classId,
+        },
+      }
     );
   }
 }

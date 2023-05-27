@@ -11,13 +11,13 @@ export class TeacherService {
 
   getTeacherData(id?: number) {
     return this.httpClient.get<TeacherDataDtoResponse>(
-      `http://localhost:3000/api/teacher/${id}`
+      `http://81.200.151.177:3000/api/teacher/${id}`
     );
   }
 
   getClassLessons(classId: number, subjectId: number) {
     return this.httpClient.get<LessonDtoResponse[]>(
-      `http://localhost:3000/api/lessons/class/${classId}?subjectId=${subjectId}`
+      `http://81.200.151.177:3000/api/lessons/class/${classId}?subjectId=${subjectId}`
     );
   }
 }

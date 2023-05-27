@@ -1,16 +1,17 @@
-<div class="container mx-auto my-8" *ngIf="!isLoading">
-  <h2 class="text-4xl text-[#7255C5] mb-4">Мои уроки</h2>
-  <div
-    class="flex flex-col gap-8"
-    *ngIf="lessonsData && lessonsData.length !== 0; else notfound">
-    <div class="border-2 rounded-xl p-4" *ngFor="let subject of lessonsData">
-      <h3 class="text-3xl mb-4">{{ subject.subject.name }}</h3>
-      <div class="flex flex-col gap-4">
-        <div
-          [routerLink]="['/lessons', lesson.id]"
-          class="py-4 border-t-2 last:border-b-2 hover:bg-gray-200 cursor-pointer"
-          *ngFor="let lesson of subject.lessons">
-          <h4 class="text-xl">{{ lesson.name }}</h4>
+<div *ngIf="!isLoading">
+  <div *ngIf="lessonsData && lessonsData.length !== 0; else notfound">
+    <h2 class="text-4xl text-[#7255C5] mb-4">Мои уроки</h2>
+    <div class="flex flex-col gap-8">
+      <div class="border-2 rounded-xl p-4" *ngFor="let subject of lessonsData">
+        <h3 class="text-3xl mb-4">{{ subject.subject.name }}</h3>
+        <div class="flex flex-col">
+          <div
+            [routerLink]="['/lessons', lesson.id]"
+            class="py-4 border-t-2 last:border-b-2 hover:bg-gray-200 cursor-pointer flex justify-between items-center"
+            *ngFor="let lesson of subject.lessons">
+            <h4 class="text-xl">{{ lesson.name }}</h4>
+            <p class="text-lg">Сложность: {{ lesson.difficultyScore }}</p>
+          </div>
         </div>
       </div>
     </div>

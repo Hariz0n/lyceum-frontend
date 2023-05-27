@@ -3,7 +3,7 @@ import { IClass } from '../interfaces/class.interface';
 import { ClassService } from '../../../services/class.service';
 import { AuthService } from '../../../services/auth.service';
 import { StudentService } from '../../../services/student.service';
-import { switchMap } from 'rxjs';
+import { first, Observable, of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-my-class',
@@ -11,8 +11,8 @@ import { switchMap } from 'rxjs';
   styleUrls: ['./my-class.component.css'],
 })
 export class MyClassComponent implements OnInit {
-  isLoaded = false;
-  classData!: IClass;
+  isLoading = false;
+  classData?: IClass;
   constructor(
     private classService: ClassService,
     private authService: AuthService,
@@ -20,18 +20,25 @@ export class MyClassComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.authService.payload$
       .pipe(
         switchMap(payload => {
           return this.studentService.getStudent(payload?.sub as number);
         }),
         switchMap(stud => {
-          return this.classService.getClassData(stud.class.id);
-        })
+          return stud.class?.id
+            ? this.classService.getClassData(stud.class.id)
+            : of(undefined).pipe(first());
+        }),
+        first()
       )
       .subscribe(data => {
         this.classData = data;
-        this.isLoaded = true;
+        console.log(data);
+        this.isLoading = false;
       });
   }
+
+  protected readonly console = console;
 }

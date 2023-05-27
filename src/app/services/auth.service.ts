@@ -11,7 +11,6 @@ interface IPayload {
   type: 'student' | 'teacher';
   iat: number;
   exp: number;
-  id?: number;
 }
 
 @Injectable({
@@ -32,7 +31,7 @@ export class AuthService {
   login(credentials: LoginDtoRequest) {
     return this.httpClient
       .post<AuthDtoResponse>(
-        'http://localhost:3000/api/auth/login',
+        'http://81.200.151.177:3000/api/auth/login',
         credentials
       )
       .pipe(
@@ -48,8 +47,12 @@ export class AuthService {
 
   register(creds: RegisterDtoRequest) {
     return this.httpClient
-      .post<AuthDtoResponse>('http://localhost:3000/api/auth/register', creds)
+      .post<AuthDtoResponse>(
+        'http://81.200.151.177:3000/api/auth/register',
+        creds
+      )
       .pipe(
+        tap(e => console.log(e)),
         tap(token => {
           localStorage.setItem('access_token', token.access_token);
           this._payload.next(

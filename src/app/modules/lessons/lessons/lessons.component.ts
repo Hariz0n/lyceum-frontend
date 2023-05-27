@@ -30,7 +30,7 @@ interface ILessonData {
 })
 export class LessonsComponent implements OnInit {
   isLoading = false;
-  lessonsData!: ILessonData[];
+  lessonsData?: ILessonData[];
   constructor(
     private lessonsService: LessonsService,
     private studentService: StudentService,
@@ -38,13 +38,16 @@ export class LessonsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.authService.payload$
       .pipe(
         switchMap(payload => {
           return this.studentService.getStudent(payload?.sub as number);
         }),
         first(),
-        map(data => data.class.classLesson),
+        map(data => {
+          return data.class?.classLesson ?? [];
+        }),
         mergeAll(),
         groupBy(data => data.lesson.subject.id),
         mergeMap(data => data.pipe(toArray())),
@@ -62,6 +65,9 @@ export class LessonsComponent implements OnInit {
         toArray(),
         tap(e => console.log(e))
       )
-      .subscribe(e => (this.lessonsData = e));
+      .subscribe(e => {
+        this.lessonsData = e;
+        this.isLoading = false;
+      });
   }
 }

@@ -49,8 +49,8 @@ export class ProfileComponent {
         //     grade: lesson.lesson.information,
         //   });
         // });
-        this.grade = mockStudent.class.name;
-        mockStudent.class.classLesson.forEach(e => {
+        this.grade = mockStudent.class?.name ?? '';
+        mockStudent.class?.classLesson.forEach(e => {
           this.subjects.push({
             name: e.lesson.name,
             grade: e.lesson.information,

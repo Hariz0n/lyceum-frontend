@@ -84,10 +84,8 @@
     type="password"
     autocomplete="off"
     formControlName="password" />
-  <div
-    class="login__msg"
-    *ngIf="form!.hasError('noSuchUser') && form.submitted">
-    Введен неверный логин или пароль
+  <div class="login__msg" *ngIf="form.hasError('badcreds') && form.submitted">
+    Введены неверные данные
   </div>
   <p class="login__text">Тип</p>
   <select class="login__input" formControlName="type">

@@ -1,5 +1,5 @@
 <header class="bg-[#D4B7EE]">
-  <div class="container mx-auto flex align-middle justify-between">
+  <div class="container mx-auto px-6 flex align-middle justify-between">
     <div class="flex items-center gap-2 text-white">
       <button
         tuiIconButton
@@ -10,7 +10,18 @@
         <div
           *tuiSidebar="open; direction: 'left'"
           class="flex flex-col justify-center px-8">
-          <a routerLink="/" class="text-2xl my-4">Личный кабинет</a>
+          <a
+            [routerLink]="['/login']"
+            class="text-2xl my-4"
+            *ngIf="(authService.payload$ | async) === undefined"
+            >Войти</a
+          >
+          <a
+            routerLink="/"
+            class="text-2xl my-4"
+            *ngIf="authService.payload$ | async"
+            >Личный кабинет</a
+          >
           <a
             *ngIf="(authService.payload$ | async)?.type === 'student'"
             routerLink="/lessons"
@@ -24,7 +35,7 @@
             >Мой класс</a
           >
           <a
-            *ngIf="(authService.payload$ | async)?.type === 'student'"
+            *ngIf="authService.payload$ | async"
             routerLink="/books"
             class="text-2xl my-4"
             >Учебники</a
@@ -41,21 +52,27 @@
             *ngIf="(authService.payload$ | async)?.type === 'teacher'"
             >Приклепление уроков</a
           >
+          <a
+            (click)="logOut()"
+            class="text-2xl my-4 cursor-pointer"
+            *ngIf="authService.payload$ | async"
+            >Выйти</a
+          >
         </div>
       </button>
     </div>
     <div class="flex items-center gap-10">
-      <button
-        routerLink="/login"
-        *ngIf="(authService.payload$ | async)?.type"
-        tuiButton
-        type="button"
-        shape="rounded"
-        size="m"
-        appearance="secondary"
-        (click)="logOut()">
-        Выйти
-      </button>
+      <!--      <button-->
+      <!--        routerLink="/login"-->
+      <!--        *ngIf="(authService.payload$ | async)?.type"-->
+      <!--        tuiButton-->
+      <!--        type="button"-->
+      <!--        shape="rounded"-->
+      <!--        size="m"-->
+      <!--        appearance="secondary"-->
+      <!--        (click)="logOut()">-->
+      <!--        Выйти-->
+      <!--      </button>-->
       <img src="assets/logo.svg" alt="Logo" style="margin: 8px 0" />
     </div>
   </div>

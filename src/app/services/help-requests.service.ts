@@ -13,39 +13,39 @@ export class HelpRequestsService {
 
   createHelpRequest(createHelpRequestDtoRequest: CreateHelpRequestDtoRequest) {
     return this.httpClient.post<HelpRequestDtoResponse>(
-      'http://localhost:3000/api/help-request',
+      'http://81.200.151.177:3000/api/help-request',
       createHelpRequestDtoRequest
     );
   }
 
   getAllUnsolvedReqs() {
     return this.httpClient.get<HelpRequestDtoResponse[]>(
-      'http://localhost:3000/api/help-request'
+      'http://81.200.151.177:3000/api/help-request'
     );
   }
 
   getOneUnsolvedReq(id: number) {
     return this.httpClient.get<HelpRequestDtoResponse>(
-      `http://localhost:3000/api/help-request/${id}`
+      `http://81.200.151.177:3000/api/help-request/${id}`
     );
   }
 
   solveHelpReq(solveHelpRequestDtoRequest: SolveHelpRequestDtoRequest) {
     return this.httpClient.post<HelpRequestDtoResponse>(
-      `http://localhost:3000/api/solved-help-requests`,
+      `http://81.200.151.177:3000/api/solved-help-requests`,
       solveHelpRequestDtoRequest
     );
   }
 
   getAllSolvedHelpRequests() {
     return this.httpClient.get<SolvedHelpRequestDtoResponse[]>(
-      'http://localhost:3000/api/solved-help-requests'
+      'http://81.200.151.177:3000/api/solved-help-requests'
     );
   }
 
   getOneSolvedHelpRequest(id: number) {
     return this.httpClient.get<SolvedHelpRequestDtoResponse>(
-      `http://localhost:3000/api/solved-help-requests/${id}`
+      `http://81.200.151.177:3000/api/solved-help-requests/${id}`
     );
   }
 }

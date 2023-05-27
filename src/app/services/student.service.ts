@@ -10,7 +10,7 @@ export class StudentService {
 
   getStudent(id: number | undefined) {
     return this.httpClient.get<StudentDtoResponse>(
-      `http://localhost:3000/api/student/${id}`
+      `http://81.200.151.177:3000/api/student/${id}`
     );
   }
 }

@@ -20,7 +20,7 @@ export class StudentDtoResponse {
   middleName!: string;
   email!: string;
   photoPath!: string;
-  class!: {
+  class?: {
     id: number;
     name: string;
     grade: number;

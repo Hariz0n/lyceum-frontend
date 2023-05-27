@@ -1,4 +1,4 @@
-<div class="flex flex-col my-8 container mx-auto gap-8" *ngIf="!isLoading">
+<div class="flex flex-col gap-8" *ngIf="!isLoading">
   <button
     [routerLink]="['/lessons', 'new']"
     class="text-2xl bg-green-500 rounded-xl border-2 border-green-500 py-3 text-white hover:bg-green-400 transition-colors">
@@ -11,7 +11,9 @@
     <h2 class="text-4xl text-[#7255C5] mb-4">{{ lesson.name }}</h2>
     <p class="text-3xl">{{ lesson.information | slice : 0 : 50 }}...</p>
   </div>
-  <div class="p-6 bg-white rounded-xl shadow-lg cursor-pointer">
+  <div
+    class="p-6 bg-white rounded-xl shadow-lg cursor-pointer"
+    *ngIf="lessons.length === 0">
     <h2 class="text-4xl text-[#7255C5] mb-4 text-center">Уроки не найдены</h2>
     <p class="text-3xl text-center">
       Уроки по текущему предмету не было найдено

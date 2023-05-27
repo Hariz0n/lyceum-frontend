@@ -1,8 +1,8 @@
-<div class="container mx-auto my-8" *ngIf="!isLoading">
+<div *ngIf="!isLoading">
   <form
     (submit)="onSubmit()"
     [formGroup]="form"
-    class="border-2 rounded-xl p-6 flex flex-col bg-white">
+    class="shadow-lg rounded-xl p-6 flex flex-col bg-white">
     <label for="name" class="text-2xl text-[#7255C5] mb-3">Название</label>
     <input
       id="name"
@@ -14,7 +14,7 @@
     <textarea
       id="description"
       formControlName="information"
-      class="p-4 rounded-xl text-xl mb-4 h-auto h-[33vh] border-gray-400 border"></textarea>
+      class="p-4 rounded-xl text-xl mb-4 min-h-[50vh] border-gray-400 border"></textarea>
     <div class="flex justify-between items-end">
       <div class="flex flex-col">
         <label for="difficulty" class="text-2xl text-[#7255C5] mb-3"

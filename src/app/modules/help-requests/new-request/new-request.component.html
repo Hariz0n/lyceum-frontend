@@ -2,7 +2,14 @@
   class="container mx-auto my-8 bg-white rounded-xl shadow-lg p-6"
   *ngIf="!isLoading">
   <h2 class="text-4xl text-[#7255C5] mb-4">Заявка на помощь</h2>
-  <form [formGroup]="form" (submit)="onSubmit()" class="flex flex-col gap-4">
+  <div *ngIf="!lessons" class="text-3xl text-[#7255C5] mb-4">
+    Вы не прикреплены к классу
+  </div>
+  <form
+    *ngIf="lessons"
+    [formGroup]="form"
+    (submit)="onSubmit()"
+    class="flex flex-col gap-4">
     <label for="lesson" class="text-2xl text-[#7255C5]">Урок</label>
     <select
       id="lesson"

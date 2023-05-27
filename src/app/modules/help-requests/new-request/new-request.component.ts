@@ -19,6 +19,7 @@ interface IForm {
 })
 export class NewRequestComponent implements OnInit {
   isLoading = false;
+  isClassAttached = false;
   lessons!: LessonDtoResponse[];
   form!: FormGroup<IForm>;
   constructor(
@@ -38,12 +39,15 @@ export class NewRequestComponent implements OnInit {
         first()
       )
       .subscribe(data => {
-        this.lessons = data.class.classLesson.map(t => t.lesson);
-        this.form = new FormGroup<IForm>({
-          lesson: new FormControl<number | null>(null, [Validators.required]),
-          description: new FormControl<string>('', [Validators.required]),
-          applicant: new FormControl<{ id: number } | null>({ id: data.id }),
-        });
+        if (data.class) {
+          this.isClassAttached = true;
+          this.lessons = data.class.classLesson.map(t => t.lesson);
+          this.form = new FormGroup<IForm>({
+            lesson: new FormControl<number | null>(null, [Validators.required]),
+            description: new FormControl<string>('', [Validators.required]),
+            applicant: new FormControl<{ id: number } | null>({ id: data.id }),
+          });
+        }
         this.isLoading = false;
       });
   }

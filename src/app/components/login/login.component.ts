@@ -16,6 +16,7 @@ interface IForm {
 })
 export class LoginComponent implements OnInit {
   public loginForm!: FormGroup;
+  public isError = false;
 
   constructor(private router: Router, private authService: AuthService) {}
 
@@ -41,7 +42,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/books']);
       },
       () => {
-        this.loginForm.setErrors(['']);
+        this.loginForm.setErrors({
+          badcreds: true,
+        });
       }
     );
   }
