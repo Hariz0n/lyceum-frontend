@@ -2,11 +2,31 @@
   <div class="container mx-auto px-6 flex align-middle justify-between">
     <div class="flex items-center gap-2 text-white">
       <button
-        tuiIconButton
+        class="bg-[#C396EC] p-2 text-white rounded-lg hover:bg-white hover:outline-1 hover:outline-[#C396EC] hover:text-[#C396EC] transition-colors"
         type="button"
         (click)="toggle(true)"
-        (tuiActiveZoneChange)="toggle($event)"
-        icon="tuiIconAlignLeftLarge">
+        (tuiActiveZoneChange)="toggle($event)">
+        <svg
+          class="fill-current"
+          width="32"
+          height="32"
+          viewBox="0 0 25 25"
+          xmlns="http://www.w3.org/2000/svg">
+          <mask
+            id="mask0_229_26"
+            style="mask-type: alpha"
+            maskUnits="userSpaceOnUse"
+            x="0"
+            y="0"
+            width="25"
+            height="25">
+            <rect x="0.580566" y="0.928833" width="24" height="24" />
+          </mask>
+          <g mask="url(#mask0_229_26)">
+            <path
+              d="M3.58057 18.9288V16.9288H21.5806V18.9288H3.58057ZM3.58057 13.9288V11.9288H21.5806V13.9288H3.58057ZM3.58057 8.92883V6.92883H21.5806V8.92883H3.58057Z" />
+          </g>
+        </svg>
         <div
           *tuiSidebar="open; direction: 'left'"
           class="flex flex-col justify-center px-8">
@@ -80,7 +100,9 @@
       <!--        (click)="logOut()">-->
       <!--        Выйти-->
       <!--      </button>-->
-      <img src="assets/logo.svg" alt="Logo" style="margin: 8px 0" />
+      <a [routerLink]="['/']">
+        <img src="assets/logo.svg" alt="Logo" style="margin: 8px 0" />
+      </a>
     </div>
   </div>
 </header>
