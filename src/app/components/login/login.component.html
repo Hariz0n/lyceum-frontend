@@ -17,7 +17,7 @@
         autocomplete="off"
         formControlName="email" />
     </div>
-    <div class="flex flex-col">
+    <div class="flex flex-col relative">
       <label for="password" class="text-2xl">Пароль</label>
       <input
         id="password"
@@ -26,7 +26,7 @@
         autocomplete="off"
         formControlName="password" />
       <div
-        class="login__msg"
+        class="absolute text-red-600 bottom-[-20px] left-3"
         *ngIf="form.hasError('badcreds') && form.submitted">
         Введены неверные данные
       </div>
