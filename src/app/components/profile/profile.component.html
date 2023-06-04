@@ -1,84 +1,90 @@
-<div class="wrapper">
-  <div class="block">
-    <div class="block__about">
-      <h1 class="profile__title">Обо мне</h1>
-      <div class="profile__card">
-        <img src="assets/pic.png" />
-        <ul *ngIf="user$ | async as user">
-          <li>
-            <p class="profile__text">Фамилия:</p>
-            {{ user.lastName }}
-          </li>
-          <li>
-            <p class="profile__text">Имя:</p>
-            {{ user.firstName }}
-          </li>
-          <li *ngIf="user.middleName">
-            <p class="profile__text">Отчество:</p>
-            {{ user.middleName }}
-          </li>
-          <li *ngIf="type === 'student' && grade">
-            <p class="profile__text">Класс:</p>
-            {{ grade }}
-          </li>
-          <li *ngIf="type === 'student'">
-            <p class="profile__text">Средний балл:</p>
-            <!-- вот тут -->
-            4.6
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div *ngIf="type === 'student' && false">
-      <h1 class="profile__title">Приближается срок</h1>
-      <div class="profile__card__small">
-        <h2 class="profile__card__title">
-          Тест по теме ”Строение стволовых ...
-        </h2>
-        <p class="profile__card_description">Биология</p>
-        <div class="profile__card__info">
-          <button class="profile__card_btn">начать тестирование</button>
-          <p>120 мин</p>
-          <p>23.03</p>
-          <p>00:00</p>
-        </div>
-      </div>
+<div class="grid grid-cols-1 gap-8 lg:grid-cols-3 xl:grid-cols-4">
+  <div class="lg:col-span-2">
+    <h1 class="text-[#7255C5] text-3xl font-medium mb-2">Обо мне</h1>
+    <div class="flex flex-col p-1 bg-white shadow-lg rounded-xl sm:flex-row">
+      <img
+        ngSrc="assets/student.png"
+        priority
+        class="rounded-t-xl w-full sm:w-48 sm:h-48 sm:rounded-tr-none sm:rounded-bl-xl"
+        alt="student image"
+        height="384"
+        width="384" />
+      <ul class="flex flex-col gap-2 p-2" *ngIf="user$ | async as user">
+        <li class="flex gap-2">
+          <p class="text-[#C396EC] text-xl">Фамилия:</p>
+          <p class="text-xl">{{ user.lastName }}</p>
+        </li>
+        <li class="flex gap-2">
+          <p class="text-[#C396EC] text-xl">Имя:</p>
+          <p class="text-xl">{{ user.firstName }}</p>
+        </li>
+        <li class="flex gap-2" *ngIf="user.middleName">
+          <p class="text-[#C396EC] text-xl">Отчество:</p>
+          <p class="text-xl">{{ user.middleName }}</p>
+        </li>
+        <li class="flex gap-2" *ngIf="type === 'student' && grade">
+          <p class="text-[#C396EC] text-xl">Класс:</p>
+          <p class="text-xl">{{ grade }}</p>
+        </li>
+        <li class="flex gap-2" *ngIf="type === 'student'">
+          <p class="text-[#C396EC] text-xl">Средний балл:</p>
+          <!-- вот тут -->
+          <p class="text-xl">4.6</p>
+        </li>
+      </ul>
     </div>
   </div>
-  <div class="block">
-    <div class="block__lessons">
-      <h1 class="profile__title">Мои предметы</h1>
-      <div class="block__lessons__wrapper">
-        <ng-container *ngIf="type === 'teacher'">
-          <div class="block__lessons__card" *ngFor="let subject of subjectsT">
-            <div class="block__lessons__card__header">{{ subject.name }}</div>
-            <img
-              src="https://placehold.co/1920x1080"
-              class="block__lessons__card__pic" />
-            <div class="block__lessons__card__desc">
-              Класс: {{ subject.grade }}
-            </div>
+  <!--    <div *ngIf="type === 'student' && false">-->
+  <!--      <h1 class="profile__title">Приближается срок</h1>-->
+  <!--      <div class="profile__card__small">-->
+  <!--        <h2 class="profile__card__title">-->
+  <!--          Тест по теме ”Строение стволовых ...-->
+  <!--        </h2>-->
+  <!--        <p class="profile__card_description">Биология</p>-->
+  <!--        <div class="profile__card__info">-->
+  <!--          <button class="profile__card_btn">начать тестирование</button>-->
+  <!--          <p>120 мин</p>-->
+  <!--          <p>23.03</p>-->
+  <!--          <p>00:00</p>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+
+  <div class="lg:col-span-3 xl:col-span-4">
+    <h1 class="text-[#7255C5] text-3xl font-medium mb-2">Мои предметы</h1>
+    <div
+      class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <ng-container *ngIf="type === 'teacher'">
+        <div
+          class="shadow-lg cursor-pointer flex flex-col rounded-2xl"
+          *ngFor="let subject of subjectsT">
+          <div class="block__lessons__card__header">{{ subject.name }}</div>
+          <img
+            src="https://placehold.co/1920x1080"
+            class="block__lessons__card__pic" />
+          <div class="block__lessons__card__desc">
+            Класс: {{ subject.grade }}
           </div>
-        </ng-container>
-        <ng-container *ngIf="type === 'student'">
-          <div
-            class="block__lessons__card"
-            *ngFor="let subject of subjectsS"
-            routerLink="/lessons/">
-            <div class="block__lessons__card__header">
-              <!--              <a routerLink="/lessons/">-->
-              <abbr title="{{ subject.name }}">{{ subject.name }}</abbr>
-              <!--              </a>-->
-            </div>
-            <img
-              src="https://placehold.co/1920x1080"
-              class="block__lessons__card__pic" />
-            <div class="block__lessons__card__desc">
-              Всего тем: {{ subject.grade }}
-            </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="type === 'student'">
+        <div
+          class="shadow-lg cursor-pointer flex flex-col rounded-2xl hover:opacity-75 transition-opacity"
+          *ngFor="let subject of subjectsS"
+          routerLink="/lessons">
+          <div class="text-xl rounded-t-2xl bg-[#FFB1B1] text-center">
+            <!--              <a routerLink="/lessons/">-->
+            <abbr class="no-underline" title="{{ subject.name }}">{{
+              subject.name
+            }}</abbr>
+            <!--              </a>-->
           </div>
-        </ng-container>
-      </div>
+          <img src="https://placehold.co/1920x1080" />
+          <div class="text-xl rounded-b-2xl bg-[#FFB1B1] text-center">
+            Всего тем: {{ subject.grade }}
+          </div>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>

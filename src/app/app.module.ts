@@ -38,7 +38,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TuiSidebarModule } from '@taiga-ui/addon-mobile';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { WelcomeComponent } from './components/welcome/welcome.component';
-import { registerLocaleData } from '@angular/common';
+import { NgOptimizedImage, registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
 import { ProfileComponent } from './components/profile/profile.component';
 
@@ -81,6 +81,7 @@ registerLocaleData(localeRu, 'ru');
     TuiSelectModule,
     TuiDataListWrapperModule,
     TuiTextfieldControllerModule,
+    NgOptimizedImage,
   ],
   providers: [
     { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer },

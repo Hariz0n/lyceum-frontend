@@ -5,8 +5,6 @@ import { Observable } from 'rxjs';
 import { StudentService } from '../../services/student.service';
 import { TeacherDataDtoResponse } from '../../interfaces/TeacherDataDtoResponse';
 import { StudentDtoResponse } from '../../dto/StudentDtoResponse';
-import { mockTeacher } from '../../mock/mock-teacher';
-import { mockStudent } from '../../mock/mock-student';
 
 @Component({
   selector: 'app-profile',

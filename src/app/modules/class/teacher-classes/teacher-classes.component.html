@@ -15,30 +15,50 @@
                 subjectId: snb.id
               }"
               type="button"
-              class="bg-green-500 text-3xl text-white px-3 rounded">
+              class="bg-[#C396EC] hover:bg-[#E1D0F0] transition-colors aspect-square hover:bg-gr text-3xl text-white px-3 rounded">
               +
             </button>
           </div>
           <div class="grid grid-cols-4 gap-4">
             <div
               *ngFor="let lesson of cls.lessons"
-              class="p-4 border-2 rounded-xl aspect-square flex flex-col justify-between">
+              class="p-4 border-2 rounded-xl aspect-square flex flex-col gap-2 justify-between">
               <h5 class="text-2xl">
                 {{ lesson.name }}
               </h5>
               <p class="text-lg">
                 {{ lesson.information | slice : 0 : 30 }}...
               </p>
-              <div class="flex flex-col justify-around justify-self-end gap-2">
+              <div class="flex justify-between justify-self-end gap-2">
                 <button
-                  class="bg-gray-400 text-xl font-bold p-2 rounded cursor-pointer"
+                  class="bg-[#C396EC] hover:bg-[#E1D0F0] transition-colors text-white text-lg font-bold px-4 py-2 rounded cursor-pointer"
                   [routerLink]="['/lessons', lesson.id, 'edit']">
                   Изменить
                 </button>
                 <button
                   (click)="unAttachClass(cls.id, lesson.id)"
-                  class="bg-red-500 text-white text-xl font-bold px-4 py-2 rounded">
-                  Открепить
+                  class="bg-red-500 border border-red-500 text-white hover:bg-white hover:text-red-500 transition-colors text-xl font-bold p-2 rounded">
+                  <svg
+                    class="fill-current w-6 h-6"
+                    width="49"
+                    height="49"
+                    viewBox="0 0 49 49"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <mask
+                      id="mask0_220_20"
+                      style="mask-type: alpha"
+                      maskUnits="userSpaceOnUse"
+                      x="0"
+                      y="0"
+                      width="48"
+                      height="48">
+                      <rect x="0.749146" y="0.142883" width="48" height="48" />
+                    </mask>
+                    <g mask="url(#mask0_220_20)">
+                      <path
+                        d="M38.2492 33.5929L35.7992 31.1429C37.4992 30.8095 38.9158 30.0096 40.0492 28.7429C41.1825 27.4762 41.7492 25.9929 41.7492 24.2929C41.7492 22.3595 41.0658 20.7095 39.6992 19.3429C38.3325 17.9762 36.6825 17.2929 34.7492 17.2929H26.9992V14.2929H34.7492C37.5158 14.2929 39.8742 15.2679 41.8242 17.2179C43.7742 19.1679 44.7492 21.5262 44.7492 24.2929C44.7492 26.3595 44.1492 28.2262 42.9492 29.8929C41.7492 31.5595 40.1825 32.7929 38.2492 33.5929ZM30.4492 25.7929L27.4492 22.7929H32.4992V25.7929H30.4492ZM41.4492 45.3429L3.89917 7.79288L6.04917 5.64288L43.5992 43.1929L41.4492 45.3429ZM23.2492 34.1429H14.7492C11.9825 34.1429 9.62417 33.1679 7.67417 31.2179C5.72417 29.2679 4.74917 26.9095 4.74917 24.1429C4.74917 21.7429 5.49084 19.6262 6.97417 17.7929C8.4575 15.9596 10.3492 14.8095 12.6492 14.3429L15.4492 17.1429H14.7492C12.8158 17.1429 11.1658 17.8262 9.79917 19.1929C8.4325 20.5596 7.74917 22.2095 7.74917 24.1429C7.74917 26.0762 8.4325 27.7262 9.79917 29.0929C11.1658 30.4596 12.8158 31.1429 14.7492 31.1429H23.2492V34.1429ZM16.9992 25.6429V22.6429H20.9492L23.9492 25.6429H16.9992Z" />
+                    </g>
+                  </svg>
                 </button>
               </div>
             </div>
