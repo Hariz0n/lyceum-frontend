@@ -2,7 +2,10 @@
   <div *ngIf="lessonsData && lessonsData.length !== 0; else notfound">
     <h2 class="text-4xl text-[#7255C5] mb-4">Мои уроки</h2>
     <div class="flex flex-col gap-8">
-      <div class="border-2 rounded-xl p-4" *ngFor="let subject of lessonsData">
+      <div
+        class="border-2 rounded-xl p-4"
+        *ngFor="let subject of lessonsData"
+        [id]="subject.subject.id">
         <h3 class="text-3xl mb-4">{{ subject.subject.name }}</h3>
         <div class="flex flex-col">
           <div

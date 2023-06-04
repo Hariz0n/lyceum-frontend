@@ -20,6 +20,7 @@ export class HeaderComponent {
   }
   logOut() {
     this.authService.logOut();
+    this.toggle(false);
     this.router.navigate(['/']);
   }
   protected readonly AuthService = AuthService;

@@ -33,8 +33,8 @@ export class ProfileComponent {
     new Observable<TeacherDataDtoResponse | StudentDtoResponse>();
   public type!: 'student' | 'teacher';
   public grade = '';
-  public subjectsS: { name: string; grade: number }[] = [];
-  public subjectsT: { name: string; grade: string }[] = [];
+  public subjectsS: { name: string; grade: number; id: number }[] = [];
+  public subjectsT: { name: string; grade: string; id: number }[] = [];
   ngOnInit() {
     this.user$.subscribe(value => {
       if (
@@ -54,6 +54,7 @@ export class ProfileComponent {
             this.subjectsS.push({
               name: lesson.lesson.subject.name,
               grade: 1,
+              id: lesson.lesson.subject.id,
             });
             visited.push(lesson.lesson.subject.id);
           }
@@ -64,6 +65,7 @@ export class ProfileComponent {
           this.subjectsT?.push({
             name: subject.subject.name,
             grade: subject.cls.name,
+            id: subject.id,
           })
         );
       }

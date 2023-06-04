@@ -56,19 +56,20 @@
       class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       <ng-container *ngIf="type === 'teacher'">
         <div
-          class="shadow-lg cursor-pointer flex flex-col rounded-2xl"
+          [routerLink]="['/class', 'teacher']"
+          class="shadow-lg cursor-pointer flex flex-col rounded-2xl hover:opacity-75 transition-opacity"
           *ngFor="let subject of subjectsT">
-          <div class="block__lessons__card__header">{{ subject.name }}</div>
-          <img
-            src="https://placehold.co/1920x1080"
-            class="block__lessons__card__pic" />
-          <div class="block__lessons__card__desc">
+          <div class="text-xl rounded-t-2xl bg-[#FFB1B1] text-center">
+            {{ subject.name }}
+          </div>
+          <img src="https://placehold.co/1920x1080" />
+          <div class="text-xl rounded-b-2xl bg-[#FFB1B1] text-center">
             Класс: {{ subject.grade }}
           </div>
         </div>
       </ng-container>
       <ng-container *ngIf="type === 'student'">
-        <div
+        <a
           class="shadow-lg cursor-pointer flex flex-col rounded-2xl hover:opacity-75 transition-opacity"
           *ngFor="let subject of subjectsS"
           routerLink="/lessons">
@@ -83,7 +84,7 @@
           <div class="text-xl rounded-b-2xl bg-[#FFB1B1] text-center">
             Всего тем: {{ subject.grade }}
           </div>
-        </div>
+        </a>
       </ng-container>
     </div>
   </div>

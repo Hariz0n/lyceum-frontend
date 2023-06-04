@@ -11,42 +11,49 @@
           *tuiSidebar="open; direction: 'left'"
           class="flex flex-col justify-center px-8">
           <a
+            (click)="toggle(false)"
             [routerLink]="['/login']"
             class="text-2xl my-4"
             *ngIf="(authService.payload$ | async) === undefined"
             >Войти</a
           >
           <a
+            (click)="toggle(false)"
             routerLink="/"
             class="text-2xl my-4"
             *ngIf="authService.payload$ | async"
             >Личный кабинет</a
           >
           <a
+            (click)="toggle(false)"
             *ngIf="(authService.payload$ | async)?.type === 'student'"
             routerLink="/lessons"
             class="text-2xl my-4"
             >Мои уроки</a
           >
           <a
+            (click)="toggle(false)"
             *ngIf="(authService.payload$ | async)?.type === 'student'"
             routerLink="/class"
             class="text-2xl my-4"
             >Мой класс</a
           >
           <a
+            (click)="toggle(false)"
             *ngIf="authService.payload$ | async"
             routerLink="/books"
             class="text-2xl my-4"
             >Учебники</a
           >
           <a
+            (click)="toggle(false)"
             *ngIf="(authService.payload$ | async)?.type === 'student'"
             routerLink="/help-requests"
             class="text-2xl my-4"
             >Помощь</a
           >
           <a
+            (click)="toggle(false)"
             routerLink="/class/teacher"
             class="text-2xl my-4"
             *ngIf="(authService.payload$ | async)?.type === 'teacher'"
